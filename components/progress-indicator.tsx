@@ -51,7 +51,7 @@ export function ProgressIndicator() {
                 ${isCompleted 
                   ? 'bg-green-100 border-green-500' 
                   : isActive 
-                    ? 'bg-blue-100 border-yellow-300' 
+                    ? 'bg-yellow-100 border-yellow-300' 
                     : 'bg-gray-100 border-gray-300'
                 }
               `}>
