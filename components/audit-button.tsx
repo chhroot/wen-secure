@@ -3,7 +3,6 @@
 import { Loader2 } from 'lucide-react'
 import { isValidEthereumAddress } from '@/lib/ethereum'
 import { useAuditStore } from '@/lib/store/audit-store'
-import { etherscanService } from '@/lib/services/etherscan'
 
 export function AuditButton() {
   const {
@@ -46,10 +45,6 @@ export function AuditButton() {
         message: 'Fetching contract source code from Etherscan...'
       })
 
-      const contractInfo = await etherscanService.getContractSourceCode(contractAddress)
-      setContractInfo(contractInfo)
-      setIsLoadingContract(false)
-
       setAuditProgress({
         step: 'analyzing',
         message: 'Analyzing contract for security vulnerabilities...'
@@ -62,8 +57,7 @@ export function AuditButton() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          sourceCode: contractInfo.sourceCode,
-          contractName: contractInfo.contractName
+          contractAddress
         })
       })
 
@@ -72,9 +66,11 @@ export function AuditButton() {
         throw new Error(errorData.error || 'Failed to perform audit')
       }
 
-      const auditResult = await auditResponse.json()
-
-      setAuditResult(auditResult)
+      const response = await auditResponse.json()
+      
+      setContractInfo(response.contractInfo)
+      setAuditResult(response.auditResult)
+      setIsLoadingContract(false)
       setIsLoadingAudit(false)
 
       setAuditProgress({

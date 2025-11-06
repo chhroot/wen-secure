@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Loader2, ArrowRight } from 'lucide-react'
 import { isValidEthereumAddress } from '@/lib/ethereum'
 import { useAuditStore } from '@/lib/store/audit-store'
-import { etherscanService } from '@/lib/services/etherscan'
 import dynamic from 'next/dynamic'
 
 const TargetCursor = dynamic(() => import('@/components/TargetCursor'), { ssr: false });
@@ -21,10 +20,7 @@ export function ContractAddressInput() {
     setIsLoadingAudit,
     setContractInfo,
     setAuditResult,
-    setAuditProgress,
-    resetAudit,
-    auditProgress,
-    auditResult
+    setAuditProgress
   } = useAuditStore()
   
   const [inputValue, setInputValue] = useState(contractAddress)
@@ -67,10 +63,6 @@ export function ContractAddressInput() {
         message: 'Fetching contract source code from Etherscan...'
       })
 
-      const contractInfo = await etherscanService.getContractSourceCode(contractAddress)
-      setContractInfo(contractInfo)
-      setIsLoadingContract(false)
-
       setAuditProgress({
         step: 'analyzing',
         message: 'Analyzing contract for security vulnerabilities...'
@@ -83,8 +75,7 @@ export function ContractAddressInput() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          sourceCode: contractInfo.sourceCode,
-          contractName: contractInfo.contractName
+          contractAddress
         })
       })
 
@@ -93,9 +84,11 @@ export function ContractAddressInput() {
         throw new Error(errorData.error || 'Failed to perform audit')
       }
 
-      const auditResult = await auditResponse.json()
-
-      setAuditResult(auditResult)
+      const response = await auditResponse.json()
+      
+      setContractInfo(response.contractInfo)
+      setAuditResult(response.auditResult)
+      setIsLoadingContract(false)
       setIsLoadingAudit(false)
 
       setAuditProgress({

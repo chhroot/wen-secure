@@ -49,7 +49,7 @@ class EtherscanService {
   private readonly apiKey: string
 
   constructor() {
-    this.apiKey = process.env.NEXT_PUBLIC_ETHERSCAN_API_KEY || ''
+    this.apiKey = process.env.ETHERSCAN_API_KEY || ''
     if (!this.apiKey) {
       console.warn('Etherscan API key not found. Some features may not work.')
     }
