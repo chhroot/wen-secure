@@ -12,7 +12,6 @@ export default function Home() {
     return (
         <div>
             <main>
-                {/* Hero section with background image */}
                 <section
                     className={`w-full mx-auto bg-cover bg-no-repeat bg-top px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center gap-10 transition-all duration-500 ${
                         hasResults
@@ -26,7 +25,6 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* Audit results section without background */}
                 {hasResults && (
                     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
                         <AuditResults />
