@@ -64,12 +64,12 @@ export function AuditResults() {
              <div className="w-full  mx-auto bg-neutral-900 ">
                 {/* Header */}
                 <div className="p-6">
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-0 md:items-center justify-between">
                         <div>
                             <h2 className="text-2xl font-bold mb-2">
                                 Security Audit Report
                             </h2>
-                            <div className="flex items-center gap-4 text-sm">
+                            <div className="flex items-start md:items-center gap-4 text-xs md:text-sm text-neutral-400/90">
                                 <span className="flex items-center gap-1">
                                     <Code className="w-4 h-4" />
                                     {contractInfo.contractName}
@@ -86,7 +86,7 @@ export function AuditResults() {
                             </div>
                         </div>
 
-                        <div className="flex gap-2">
+                        <div className="flex gap-2 md:self-start self-end">
                             <button
                                 className="cursor-target cursor-pointer flex items-center gap-2 px-4 py-2 bg-white text-black hover:bg-neutral-300 transition-colors"
                                 onClick={handleExportPDF}
@@ -107,7 +107,7 @@ export function AuditResults() {
 
                 {/* Tabs */}
                 <div className="">
-                    <nav className="flex">
+                    <nav className="flex overflow-y-auto">
                         {tabs.map((tab) => {
                             const TabIcon = tab.icon;
                             return (
@@ -123,7 +123,7 @@ export function AuditResults() {
                                         )
                                     }
                                     className={`
-                  flex cursor-target items-center gap-2 px-6 py-4 font-mono font-semibold text-sm transition-colors
+                  flex cursor-target text-nowrap items-center gap-2 px-6 py-4 font-mono font-semibold text-sm transition-colors
                   ${
                       activeTab === tab.id
                           ? 'text-white border-b-2 border-white bg-neutral-600/50'
@@ -145,11 +145,11 @@ export function AuditResults() {
                         <div className="space-y-6 text-neutral-50">
                             {/* Executive Summary */}
                             <div>
-                                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
                                     Executive Summary
                                 </h3>
                                 <div className="">
-                                    <p className="leading-relaxed">
+                                    <p className="leading-relaxed text-lg">
                                         {auditResult.executiveSummary}
                                     </p>
                                 </div>
@@ -157,7 +157,7 @@ export function AuditResults() {
 
                             {/* Security Overview */}
                             <div>
-                                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
                                     Security Overview
                                 </h3>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -172,24 +172,24 @@ export function AuditResults() {
                                         </div>
                                     </div>
 
-                                    <div className="border-2 border-orange-600 p-4">
+                                    <div className="border-2 border-yellow-600 p-4">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <span className="font-semibold text-orange-600">
+                                            <span className="font-semibold text-yellow-600">
                                                 Medium Issues
                                             </span>
                                         </div>
-                                        <div className="text-3xl font-bold text-orange-600">
+                                        <div className="text-3xl font-bold text-yellow-600">
                                             {mediumCount}
                                         </div>
                                     </div>
 
-                                    <div className="border-2 border-yellow-600 p-4">
+                                    <div className="border-2 border-emerald-600 p-4">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <span className="font-semibold text-yellow-600">
+                                            <span className="font-semibold text-emerald-600">
                                                 Low Issues
                                             </span>
                                         </div>
-                                        <div className="text-3xl font-bold text-yellow-600">
+                                        <div className="text-3xl font-bold text-emerald-600">
                                             {lowCount}
                                         </div>
                                     </div>
@@ -198,11 +198,11 @@ export function AuditResults() {
 
                             {/* Code Quality Assessment */}
                             <div>
-                                <h3 className="text-lg font-semibold mb-3 flex items-center gap-2">
+                                <h3 className="text-xl font-semibold mb-3 flex items-center gap-2">
                                     Code Quality Assessment
                                 </h3>
                                 <div className="">
-                                    <p className="leading-relaxed">
+                                    <p className="leading-relaxed text-lg">
                                         {auditResult.codeQualityAssessment}
                                     </p>
                                 </div>
@@ -236,7 +236,7 @@ export function AuditResults() {
                                                                 </span>
                                                             </div>
 
-                                                            <p className="text-sm mb-1 leading-relaxed text-neutral-300">
+                                                            <p className="text-lg mb-1 leading-relaxed text-neutral-300">
                                                                 {
                                                                     vuln.description
                                                                 }
@@ -244,10 +244,10 @@ export function AuditResults() {
 
                                                             {vuln.location && (
                                                                 <div className="mb-1">
-                                                                    <span className="text-xs font-medium opacity-75">
+                                                                    <span className="text-lg font-medium opacity-75">
                                                                         Location:
                                                                     </span>
-                                                                    <code className="ml-2 px-2 py-1 bg-white/6 rounded text-sm font-mono">
+                                                                    <code className="ml-2 px-2 py-1 bg-white/6 rounded text-lg font-mono">
                                                                         {
                                                                             vuln.location
                                                                         }
@@ -257,7 +257,7 @@ export function AuditResults() {
 
                                                             <div className="text-sm mt-1 space-y-1">
                                                                 <div>
-                                                                    <span className="text-xs font-medium opacity-75">
+                                                                    <span className="text-lg font-medium opacity-75">
                                                                         Impact:
                                                                     </span>
                                                                     <p className="mt-1 text-neutral-300">
@@ -267,7 +267,7 @@ export function AuditResults() {
                                                                     </p>
                                                                 </div>
                                                                 <div>
-                                                                    <span className="text-xs font-medium opacity-75">
+                                                                    <span className="text-lg font-medium opacity-75">
                                                                         Recommendation:
                                                                     </span>
                                                                     <p className="mt-1 text-neutral-300">
@@ -288,7 +288,7 @@ export function AuditResults() {
 
                             {mediumCount > 0 && (
                                 <section>
-                                    <h3 className="text-lg font-semibold mb-3 text-orange-600 flex items-center gap-2">
+                                    <h3 className="text-lg font-semibold mb-3 text-yellow-600 flex items-center gap-2">
                                         Medium Severity Issues ({mediumCount})
                                     </h3>
                                     <div className="space-y-4">
@@ -307,17 +307,17 @@ export function AuditResults() {
                                                                     }
                                                                 </span>
                                                             </div>
-                                                            <p className="text-sm mb-1 leading-relaxed text-neutral-300">
+                                                            <p className="text-lg mb-1 leading-relaxed text-neutral-300">
                                                                 {
                                                                     vuln.description
                                                                 }
                                                             </p>
                                                             {vuln.location && (
                                                                 <div className="mb-1">
-                                                                    <span className="text-xs font-medium opacity-75">
+                                                                    <span className="text-lg font-medium opacity-75">
                                                                         Location:
                                                                     </span>
-                                                                    <code className="ml-2 px-2 py-1 bg-white/6 rounded text-sm font-mono">
+                                                                    <code className="ml-2 px-2 py-1 bg-white/6 rounded text-lg font-mono">
                                                                         {
                                                                             vuln.location
                                                                         }
@@ -326,7 +326,7 @@ export function AuditResults() {
                                                             )}
                                                             <div className="text-sm mt-1 space-y-1">
                                                                 <div>
-                                                                    <span className="text-xs font-medium opacity-75">
+                                                                    <span className="text-lg font-medium opacity-75">
                                                                         Impact:
                                                                     </span>
                                                                     <p className="mt-1 text-neutral-300">
@@ -336,7 +336,7 @@ export function AuditResults() {
                                                                     </p>
                                                                 </div>
                                                                 <div>
-                                                                    <span className="text-xs font-medium opacity-75">
+                                                                    <span className="text-lg font-medium opacity-75">
                                                                         Recommendation:
                                                                     </span>
                                                                     <p className="mt-1 text-neutral-300">
@@ -376,26 +376,26 @@ export function AuditResults() {
                                                                     }
                                                                 </span>
                                                             </div>
-                                                            <p className="text-sm mb-1 leading-relaxed text-neutral-300">
+                                                            <p className="text-lg mb-1 leading-relaxed text-neutral-300">
                                                                 {
                                                                     vuln.description
                                                                 }
                                                             </p>
                                                             {vuln.location && (
                                                                 <div className="mb-1">
-                                                                    <span className="text-xs font-medium opacity-75">
+                                                                    <span className="text-lg font-medium opacity-75">
                                                                         Location:
                                                                     </span>
-                                                                    <code className="ml-2 px-2 py-1 bg-white/6 rounded text-sm font-mono">
+                                                                    <code className="ml-2 px-2 py-1 bg-white/6 rounded text-lg font-mono">
                                                                         {
                                                                             vuln.location
                                                                         }
                                                                     </code>
                                                                 </div>
                                                             )}
-                                                            <div className="text-sm mt-1 space-y-1">
+                                                            <div className="text-lg mt-1 space-y-1">
                                                                 <div>
-                                                                    <span className="text-xs font-medium opacity-75">
+                                                                    <span className="text-lg font-medium opacity-75">
                                                                         Impact:
                                                                     </span>
                                                                     <p className="mt-1 text-neutral-300">
@@ -405,7 +405,7 @@ export function AuditResults() {
                                                                     </p>
                                                                 </div>
                                                                 <div>
-                                                                    <span className="text-xs font-medium opacity-75">
+                                                                    <span className="text-lg font-medium opacity-75">
                                                                         Recommendation:
                                                                     </span>
                                                                     <p className="mt-1 text-neutral-300">
