@@ -39,7 +39,7 @@ export function ProgressIndicator() {
       <div className="text-center">
         <HyperText 
           key={auditProgress.step}
-          duration={200}
+          duration={300}
           className="text-neutral-400 text-lg animate-pulse font-mono"
         >
           {progressText}

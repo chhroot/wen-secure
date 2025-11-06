@@ -19,10 +19,6 @@ import { useAuditStore } from '@/lib/store/audit-store';
 import { downloadMarkdown, generatePDF } from '@/lib/utils/export';
 import { BlurFade } from './ui/blur-fade';
 
-// severity icon/color maps removed — simplified vulnerability list uses neutral styles
-
-// VulnerabilityCard removed — vulnerabilities tab now renders a simplified list layout
-
 export function AuditResults() {
     const { contractInfo, auditResult, contractAddress } = useAuditStore();
     const [activeTab, setActiveTab] = useState<
