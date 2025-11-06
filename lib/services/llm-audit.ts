@@ -271,16 +271,16 @@ class LLMAuditService {
       }
     }
 
-    if (this.gemini) {
+    if (this.openai) {
       try {
-        return await this.auditWithGemini(sourceCode, contractName)
+        return await this.auditWithOpenAI(sourceCode, contractName)
       } catch (error) {
-        console.warn('Gemini audit failed, trying OpenAI:', error)
+        console.warn('OpenAI audit failed, trying Gemini:', error)
       }
     }
 
-    if (this.openai) {
-      return await this.auditWithOpenAI(sourceCode, contractName)
+    if (this.gemini) {
+      return await this.auditWithGemini(sourceCode, contractName)
     }
 
     throw new LLMAuditError('No LLM service available', 'API_ERROR')

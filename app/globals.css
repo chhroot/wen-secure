@@ -6,8 +6,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --font-grotesk: var(--font-space-grotesk);
+  --font-mono: var(--font-space-mono);
   --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
   --font-inter: var(--font-inter);
   --animate-aurora: aurora 8s ease-in-out infinite alternate;
   --color-sidebar-ring: var(--sidebar-ring);

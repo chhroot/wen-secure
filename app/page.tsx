@@ -1,39 +1,49 @@
 import { ContractAddressInput } from '@/components/contract-address-input';
-import { AuditButton } from '@/components/audit-button';
 import { ProgressIndicator } from '@/components/progress-indicator';
 import { AuditResults } from '@/components/audit-results';
-import { HyperText } from '@/components/ui/hyper-text';
+import Image from 'next/image';
+import seperator from '@/assets/seperator.svg';
+import backgroundPattern from '@/assets/background-pattern.png';
 
 export default function Home() {
     return (
-        <div className="bg-linear-to-br from-blue-50 via-white to-purple-50">
-            <main className="max-w-7xl min-h-[80vh] mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col justify-center items-center">
-                <div className="text-center flex flex-col gap-1 w-full">
-                    <div className="text-5xl font-bold text-gray-900 flex flex-col md:flex-row justify-center gap-0 md:gap-2">
-                        <HyperText>FIND</HyperText>
-                        <span> </span>
-                        <HyperText className="text-yellow-300">
-                            VULNERABILITIES
-                        </HyperText>
-                        <span> </span>
-                        <HyperText>BEFORE HACKERS DO</HyperText>
+        <div
+            className="bg-black bg-cover bg-no-repeat bg-center"
+            style={{ backgroundImage: `url(${backgroundPattern.src})` }}
+        >
+            
+            <main className="max-w-7xl min-h-screen mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center gap-10">
+                <div className="text-center flex flex-col gap-3 w-full mt-32">
+                    <div className="relative p-8 mx-auto max-w-fit">
+                        <div className="absolute inset-0 pointer-events-none">
+                            <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-neutral-200"></div>
+                            <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-neutral-200"></div>
+                            <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-neutral-200"></div>
+                            <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-neutral-200"></div>
+                        </div>
+                        <div className="font-mono text-4xl md:text-6xl text-neutral-50">
+                            AUDIT A SMART CONTRACT
+                        </div>
                     </div>
-                    <p className="text-base text-gray-600 mb-8 max-w-3xl mx-auto">
-                        Get AI-powered security analysis for Ethereum smart
-                        contracts. Simply enter a contract address to identify
-                        vulnerabilities, gas optimizations, and best practices.
+                    <p className="text-2xl font-grotesk text-neutral-500 text-center max-w-2xl mx-auto">
+                        Simple Smart Contract Audit: <br />
+                        Detect Critical Bugs and Vulnerabilities
                     </p>
                 </div>
 
-                <div className="space-y-8 w-full">
-                    <div className="space-y-6">
-                        <ContractAddressInput />
-                        <AuditButton />
-                    </div>
+                <Image
+                    src={seperator}
+                    alt="Separator"
+                    className="w-2xl h-auto"
+                />
 
-                    <ProgressIndicator />
+                <section className="space-y-24 w-full">
+                    <div className="space-y-4">
+                        <ContractAddressInput />
+                        <ProgressIndicator />
+                    </div>
                     <AuditResults />
-                </div>
+                </section>
             </main>
         </div>
     );
