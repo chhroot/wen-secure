@@ -42,7 +42,7 @@ export function AuditHeader() {
     }, []);
 
     return (
-        <div className="text-center flex flex-col gap-3 w-full">
+        <div className="text-center flex flex-col gap-5 w-full justify-center">
             <div className="relative p-8 mx-auto max-w-fit">
                 <div className="absolute inset-0 pointer-events-none">
                     <div 
@@ -74,7 +74,7 @@ export function AuditHeader() {
             <Image
                 src={seperator}
                 alt="Separator"
-                className="w-2xl h-auto"
+                className="w-2xl h-auto mx-auto"
             />
 
             <div className="space-y-4 w-full">
