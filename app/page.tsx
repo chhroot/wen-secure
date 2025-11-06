@@ -15,11 +15,15 @@ export default function Home() {
                 {/* Hero section with background image */}
                 <section
                     className={`w-full mx-auto bg-cover bg-no-repeat bg-top px-4 sm:px-6 lg:px-8 py-8 flex flex-col items-center gap-10 transition-all duration-500 ${
-                        hasResults ? 'min-h-fit py-12' : 'min-h-screen justify-center'
+                        hasResults
+                            ? 'min-h-fit py-12'
+                            : 'min-h-screen justify-center'
                     }`}
                     style={{ backgroundImage: `url(${backgroundPattern.src})` }}
                 >
-                    <AuditHeader />
+                    <div className={`${hasResults ? 'mb-0' : 'mb-42'} w-full`}>
+                        <AuditHeader />
+                    </div>
                 </section>
 
                 {/* Audit results section without background */}
