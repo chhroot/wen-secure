@@ -77,6 +77,8 @@ Focus on these security areas:
 
 Provide actionable, specific recommendations with code examples where helpful.
 
+max_tokens = 4000
+
 Contract source code to audit:`
 
 class LLMAuditService {
@@ -113,7 +115,9 @@ class LLMAuditService {
 
     try {
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-5',
+        model: 'gpt-4o-mini',
+        max_tokens: 4000,
+        response_format: {type: 'json_object'},
         messages: [
           {
             role: 'system',
@@ -123,7 +127,7 @@ class LLMAuditService {
             role: 'user',
             content: `Contract Name: ${contractName}\n\n${sourceCode}`
           }
-        ],
+        ],        
       })
 
       const content = response.choices[0]?.message?.content
