@@ -75,9 +75,7 @@ export function ProgressIndicator() {
     return () => clearInterval(interval)
   }, [showFunnyMessages])
   
-  if (auditProgress.step === 'idle' || !isLoading) {
-    return null
-  }
+  const shouldShow = auditProgress.step !== 'idle' && isLoading
 
   const getProgressText = () => {
     if (showFunnyMessages) {
@@ -94,26 +92,28 @@ export function ProgressIndicator() {
       case 'complete':
         return 'Generating Report...'
       default:
-        return null
+        return 'Loading...'
     }
   }
 
   const progressText = getProgressText()
 
-  if (!progressText) {
-    return null
-  }
-
   return (
-    <div className="w-full max-w-2xl mx-auto">
-      <div className="text-center">
-        <HyperText 
-          key={auditProgress.step}
-          duration={300}
-          className="text-neutral-400 text-lg animate-pulse font-mono"
-        >
-          {progressText}
-        </HyperText>
+    <div className="w-full max-w-2xl mx-auto h-8 flex items-center justify-center">
+      <div 
+        className={`text-center transition-opacity duration-300 ${
+          shouldShow ? 'opacity-100' : 'opacity-0'
+        }`}
+      >
+        {shouldShow && (
+          <HyperText 
+            key={showFunnyMessages ? currentFunnyIndex : auditProgress.step}
+            duration={300}
+            className="text-neutral-400 text-lg animate-pulse font-mono"
+          >
+            {progressText}
+          </HyperText>
+        )}
       </div>
     </div>
   )
