@@ -113,7 +113,7 @@ class LLMAuditService {
 
     try {
       const response = await this.openai.chat.completions.create({
-        model: 'gpt-4o',
+        model: 'gpt-5',
         messages: [
           {
             role: 'system',
@@ -124,8 +124,6 @@ class LLMAuditService {
             content: `Contract Name: ${contractName}\n\n${sourceCode}`
           }
         ],
-        max_tokens: 4000,
-        temperature: 0.1
       })
 
       const content = response.choices[0]?.message?.content
@@ -273,6 +271,7 @@ class LLMAuditService {
 
     if (this.openai) {
       try {
+        console.log('Auditing with OpenAI')
         return await this.auditWithOpenAI(sourceCode, contractName)
       } catch (error) {
         console.warn('OpenAI audit failed, trying Gemini:', error)
