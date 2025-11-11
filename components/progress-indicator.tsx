@@ -108,7 +108,7 @@ export function ProgressIndicator() {
         {shouldShow && (
           <HyperText 
             key={showFunnyMessages ? currentFunnyIndex : auditProgress.step}
-            duration={300}
+            duration={900}
             className="text-neutral-400 text-lg animate-pulse font-mono"
           >
             {progressText}
